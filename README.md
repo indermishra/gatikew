@@ -24,6 +24,14 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+		require 'gatikew'
+
+		gati_credentails = {"url" => "", "custcode" => ""}
+
+		cust_ship_details = {"pickuprequest" => "", "docket_no" => "", "delivery_stn" => "", "goods_code" => "", "decl_cargo_val" => "", "actual_wt" => "", "charged_wt" => "", "order_number" => "", "cod_amt" => "", "cod_in_favour_of" => "", "recevier_code" => "", "recevier_name" => "", "recevier_add1" => "", "recevier_add2" => "", "recevier_add3" => "", "recevier_city" => "", "receiver_phone" => "", "receiver_email" => "", "receiver_pincode" => "", "number_of_pkgs" => "", "receiver_mob" => "", "receiver_del_date" => "", "special_instruction" => "", "vendor_code" => "", "prod_ser_code" => ""}
+
+		response = GatikweApi::Gati.create_gati_config(cust_ship_details,gati_credentails)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
