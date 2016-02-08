@@ -4,11 +4,11 @@ require "httparty"
 
 module GatikweApi
   class Gati
-    def self.create_gati_config(cust_ship_details, credentails)
+    def self.create_gati_config(cust_ship_details, gati_credentials)
       xm = Builder::XmlMarkup.new;false
       xm.gati{
         xm.pickuprequest(cust_ship_details["pickuprequest"])
-        xm.custcode(credentails["custcode"])
+        xm.custcode(gati_credentials["custcode"])
         xm.details{
           xm.req{
             xm.DOCKET_NO(cust_ship_details["docket_no"])
@@ -17,7 +17,7 @@ module GatikweApi
             xm.DECL_CARGO_VAL(cust_ship_details["decl_cargo_val"])
             xm.ACTUAL_WT(cust_ship_details["actual_wt"])
             xm.CHARGED_WT(cust_ship_details["charged_wt"])
-            xm.SHIPPER_CODE(credentails["custcode"])
+            xm.SHIPPER_CODE(gati_credentials["custcode"])
             xm.ORDER_NO(cust_ship_details["order_number"])
             xm.COD_AMT(cust_ship_details["cod_amt"])
             xm.COD_IN_FAVOUR_OF(cust_ship_details["cod_in_favour_of"])
@@ -40,7 +40,7 @@ module GatikweApi
         }
       }
       options = {:body => xm.target!, :headers => {'Content-Type' => 'application/xml'}}
-      response_data = HTTParty.post(credentails["url"], options)
+      response_data = HTTParty.post(gati_credentials["url"], options)
     end
 
     def self.track_gati_shipments(url, awb_number, tracking_code)
